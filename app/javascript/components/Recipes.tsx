@@ -22,8 +22,12 @@ const Recipes = (): JSX.Element => {
     fetchRecipes();
   }, []);
 
+  const createRecipe = (): void => {
+    navigate('/recipe')
+  }
+
   const allRecipes = recipes.map((recipe, index) => (
-    <div key={index} className="col-md-6 col-lg-4">
+    <div key={`${index}-${recipe.name}`} className="col-md-6 col-lg-4">
       <div className="card mb-4">
         <img
           src={recipe.image}
@@ -63,9 +67,9 @@ const Recipes = (): JSX.Element => {
       <div className="py-5">
         <main className="container">
           <div className="text-end mb-3">
-            <Link to="/recipe" className="btn custom-button">
+            <button className="btn custom-button" onClick={createRecipe}>
               Create New Recipe
-            </Link>
+            </button>
           </div>
           <div className="row">
             {recipes.length > 0 ? allRecipes : noRecipe}
